@@ -24,3 +24,4 @@ LTO_ENABLE = yes
 SERIAL_DRIVER = vendor
 AUDIO_DRIVER = pwm_hardware
 DYNAMIC_MACRO_ENABLE = yes
+COMBO_ENABLE = yes
