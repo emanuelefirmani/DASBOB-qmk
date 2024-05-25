@@ -3,9 +3,8 @@
 #define _BASE 0
 #define _SPCH 1
 #define _NUM  2
-#define _FUN  3
-#define _CURS 4
-#define _BRAC 5
+#define _CURS 3
+#define _BRAC 4
 
 /* Custom keys of layer Base */
 #define MY_A MT(MOD_LGUI, KC_A)
@@ -14,7 +13,7 @@
 #define MY_U MT(MOD_LCTL, KC_U)
 
 #define MY_ENT LT(_NUM, KC_ENTER)
-#define MY_TAB LT(_FUN, KC_TAB)
+#define MY_TAB LT(_SPCH, KC_TAB)
 
 #define MY_H MT(MOD_RCTL, KC_H)
 #define MY_T MT(MOD_RSFT, KC_T)
@@ -25,15 +24,15 @@
 #define MY_SPC LT(_CURS, KC_SPC)
 
 /* Custom keys of layer Special Chars */
-#define MY_EQL MT(MOD_LGUI, KC_EQL)
-#define MY_COMM MT(MOD_LALT, KC_SLSH)
-#define MY_SCLN MT(MOD_LSFT, KC_BSLS)
-#define MY_DOT MT(MOD_LCTL, KC_PAST)
+#define MY_SLSH MT(MOD_LGUI, KC_SLSH)
+#define MY_COMM MT(MOD_LALT, KC_COMM)
+#define MY_SCLN MT(MOD_LSFT, KC_SCLN)
+#define MY_DOT  MT(MOD_LCTL, KC_DOT )
 
-#define MY_Q MT(MOD_RCTL, KC_4)
-#define MY_J MT(MOD_RSFT, KC_5)
-#define MY_SLSH MT(MOD_RALT, KC_6)
-#define MY_BSLS MT(MOD_RGUI, KC_0)
+#define MY_AMPR MT(MOD_RCTL, KC_AMPR)
+#define MY_PIPE MT(MOD_RSFT, KC_PIPE)
+#define MY_EQL  MT(MOD_RALT, KC_EQL )
+#define MY_BSLS MT(MOD_RGUI, KC_BSLS)
 
 /* Custom keys of layer Numeric */
 #define MY_F1 MT(MOD_LGUI, KC_EQL)
@@ -52,7 +51,6 @@
 #define MY_RGHT MT(MOD_RALT, KC_6)
 #define MY_PGDN MT(MOD_RGUI, KC_0)
 
-
 /* Macros */
 enum custom_keycodes {
     M_USER = SAFE_RANGE,
@@ -60,9 +58,17 @@ enum custom_keycodes {
     M_GREE
 };
 
+/* Combos */
+const uint16_t PROGMEM combo_J[] = {KC_G, KC_C, COMBO_END};
+const uint16_t PROGMEM combo_Q[] = {KC_C, KC_R, COMBO_END};
+combo_t key_combos[] = {
+    COMBO(combo_J, KC_J),
+    COMBO(combo_Q, KC_Q), // keycodes with modifiers are possible too!
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Base
- * ,-------------------------.     ,-------------------------.
+ * ,-------------------------.     ,------ J --- Q ----------.
  * |  F  |  D  |  I  |  P  | |     | |  G  |  C  |  R  |  L  |
  * |-----+-----+-----+-----+-|     |-+-----+-----+-----+-----|
  * |  A  |  O  |  E  |  U  | |     | |  H  |  T  |  N  |  S  |
@@ -72,7 +78,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-------------------------'     `-------------------------'
  *         ,-----------------.     ,-----------------.
  *         |     |Enter| TAB |     |BSPC |Space|     |
- *         |     |NUMB | FUN |     |BRAC |CURS |     |
+ *         |     |NUMB | SPCH|     |BRAC |CURS |     |
  *         `-----------|     |     |     |-----+-----'
  *                     `-----'     `-----'
  */
@@ -85,18 +91,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* _SPCH
  * ,-------------------------.           ,-------------------------.
- * |  !  |  @  |  $  |  ?  | |           | |  *  |  |  |  _  |  %  |
+ * |  !  |  @  |  $  |  ?  | |           | |  *  |  %  |  _  |     |
  * |-----+-----+-----+-----+-|           |-+-----+-----+-----+-----|
- * |  =  |  ,  |  ;  |  .  | |           | |  Q  |  J  |  /  |  \  |
+ * |  /  |  ,  |  ;  |  .  | |           | |  &  |  |  |  =  |  \  |
  * | GUI | Alt |Shift|Ctrl | |           | |Ctrl |Shift| Alt | GUI |
  * |-----+-----+-----+-----+-|           |-+-----+-----+-----+-----|
- * |  '  |  "  |  `  |  #  | |           | |  &  |  ^  |  ~  |     |
+ * |  '  |     |  `  |  #  | |           | |     |  ^  |  ~  |  "  |
  * `-------------------------'           `-------------------------'
  */
 [_SPCH] = LAYOUT_split_3x5_3( 
-  KC_EXLM,  KC_AT,   KC_DLR,   KC_QUES, KC_TRNS,      KC_TRNS, KC_PAST, KC_PIPE, KC_UNDS, KC_PERC, \
-  MY_EQL,   MY_COMM, MY_SCLN,  MY_DOT,  KC_TRNS,      KC_TRNS, MY_Q,    MY_J,    MY_SLSH, MY_BSLS, \
-  KC_QUOTE, KC_DQUO, KC_GRAVE, KC_HASH, KC_TRNS,      KC_TRNS, KC_AMPR, KC_CIRC, KC_TILD, KC_TRNS,  \
+  KC_EXLM,  KC_AT,   KC_DLR,   KC_QUES, KC_TRNS,      KC_TRNS, KC_PAST, KC_PERC, KC_UNDS, KC_TRNS, \
+  MY_SLSH,  MY_COMM, MY_SCLN,  MY_DOT,  KC_TRNS,      KC_TRNS, MY_AMPR, MY_PIPE, MY_EQL,  MY_BSLS, \
+  KC_QUOTE, KC_TRNS, KC_GRAVE, KC_HASH, KC_TRNS,      KC_TRNS, KC_TRNS, KC_CIRC, KC_TILD, KC_DQUO,  \
                      KC_TRNS,  KC_TRNS, KC_TRNS,      KC_TRNS, KC_TRNS, KC_TRNS                    \
 ),
 
