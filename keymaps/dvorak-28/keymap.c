@@ -95,16 +95,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |  B  |  Y  |  K  |  X  | |     | |  M  |  W  |  V  |  Z  |
  * `-------------------------'     `-------------------------'
  *         ,-----------------.     ,-----------------.
- *         |     |Enter| TAB |     |BSPC |Space|     |
- *         |     |NUMB | SPCH|     |BRAC |CURS |     |
- *         `-----------|     |     |     |-----+-----'
- *                     `-----'     `-----'
+ *         |Enter| TAB |     |     |     |BSPC |Space|
+ *         |NUMB | SPCH|     |     |     |BRAC |CURS |
+ *         `-----------------'     `-----------------'
  */
 [_BASE] = LAYOUT_split_3x5_3( \
   KC_F, KC_D, KC_I, KC_P, KC_TRNS,      KC_TRNS, KC_G, KC_C, KC_R, KC_L, \
   MY_A, MY_O, MY_E, MY_U, KC_TRNS,      KC_TRNS, MY_H, MY_T, MY_N, MY_S, \
   MY_B, KC_Y, KC_K, KC_X, KC_TRNS,      KC_TRNS, KC_M, KC_W, KC_V, KC_Z, \
-          KC_TRNS, MY_ENT, MY_TAB,      MY_BSPC, MY_SPC, KC_TRNS         \
+          MY_ENT, MY_TAB, KC_TRNS,      KC_TRNS, MY_BSPC, MY_SPC         \
 ),
 
 /* _SPCH
